@@ -9,7 +9,7 @@ k =Para4(6)/ScalingFactor(6);
 BoundaryFunc = @(t) B*exp(-(t/Step)^k);
 
 feature accel on
-
+hit = NaN(size(LRating));
 nrepeat = 1;
 %profile on
 for trial = 1:length(LRating)
@@ -42,7 +42,7 @@ for trial = 1:length(LRating)
         AllRT(HaveDecided) = RT;        
         allDecision = DeltaUMat(DecisionMoments)>0; % >0 = choose left
         AllChoice(HaveDecided) = allDecision;
-        hit = (AllRT == ReactionTime(trial)) && (AllChoice == Choice(trial));
+        hit(trial) = (AllRT == ReactionTime(trial)) && (AllChoice == Choice(trial));
                     
     end
 end
